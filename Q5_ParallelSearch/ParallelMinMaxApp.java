@@ -1,5 +1,6 @@
 public class ParallelMinMaxApp {
     public static void main(String[] args) throws Exception {
+long startTime = System.nanoTime();
         int[] data = new int[50000];
         for (int i = 0; i < data.length; i++)
             data[i] = i % 1000;
@@ -18,5 +19,6 @@ public class ParallelMinMaxApp {
         }
         System.out.println("Minimum: " + min);
         System.out.println("Maximum: " + max);
+System.out.println("Execution Time: " + (System.nanoTime() - startTime) + " ns");
     }
 }

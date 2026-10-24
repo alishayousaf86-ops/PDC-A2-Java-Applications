@@ -21,6 +21,11 @@ public class ConcurrentInventoryApp {
         Map<Integer, Integer> fastMap = new ConcurrentHashMap<>();
         System.out.println("Synchronized Map: " + test(safeMap) + " ns");
         System.out.println("Concurrent Map: " + test(fastMap) + " ns");
-        System.out.println("Items: " + safeMap.size() + ", " + fastMap.size());
+       System.out.println("Synchronized Map Items: " + safeMap.size());
+System.out.println("Concurrent Map Items: " + fastMap.size());
+
+if (safeMap.size() == fastMap.size()) {
+    System.out.println("Both maps contain the same number of items.");
+}
     }
 }

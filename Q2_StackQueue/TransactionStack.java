@@ -7,6 +7,9 @@ public class TransactionStack {
     public char pop() {
         return data[top--];
     }
+    public char peek() {
+    return data[top];
+}
     public boolean isEmpty() {
         return top == -1;
     }

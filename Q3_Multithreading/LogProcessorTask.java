@@ -4,6 +4,7 @@ public class LogProcessorTask implements Runnable {
             System.out.println(
                 Thread.currentThread().getName() + ": Log " + i
             );
+
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

@@ -1,19 +1,22 @@
 import java.util.concurrent.ForkJoinPool;
+
 public class ForkJoinRiskApp {
     public static void main(String[] args) {
-        double[] values = new double[10000];
-        for (int i = 0; i < values.length; i++)
-            values[i] = i * 0.5;
-        long start = System.nanoTime();
-        double risk = new ForkJoinPool().invoke(
-            new RiskCalculator(values, 0, values.length));
-        double normalSum = 0;
-for (int i = 0; i < values.length; i++) {
-    normalSum += values[i];
-}
+        double[] risks = new double[10000];
 
-System.out.println("ForkJoin Risk: " + risk);
-System.out.println("Normal Risk: " + normalSum);
-System.out.println("Results Match: " + (risk == normalSum));        System.out.println("Time: " + (System.nanoTime() - start) + " ns");
+        for (int i = 0; i < risks.length; i++) {
+            risks[i] = i * 0.5;
+        }
+
+        ForkJoinPool pool = new ForkJoinPool();
+
+        RiskCalculator task = new RiskCalculator(risks, 0, risks.length);
+
+        double result = pool.invoke(task);
+
+        System.out.println("Total Risk: " + result);
+        System.out.println("ForkJoin calculation completed.");
+
+        pool.shutdown();
     }
 }

@@ -1,10 +1,15 @@
 public class AsyncWebEngineApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        Thread telemetry = new TelemetryThread();
+
         Thread log = new Thread(new LogProcessorTask());
-        TelemetryThread telemetry = new TelemetryThread();
-        log.setName("LogThread");
-        telemetry.setName("TelemetryThread");
-        log.start();
+
         telemetry.start();
+        log.start();
+
+        telemetry.join();
+        log.join();
+
+        System.out.println("All tasks completed.");
     }
 }

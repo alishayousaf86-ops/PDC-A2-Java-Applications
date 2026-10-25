@@ -8,6 +8,10 @@ public class FIXOrderEvent extends TradeEvent {
         this.clOrdId = (clOrdId == null) ? "" : clOrdId.trim();
     }
 
+    private double calculateFee() {
+        return basePrice * FEE_RATE;
+    }
+
     @Override
     public void dispatch() {
         if (clOrdId.isEmpty()) {
@@ -20,7 +24,7 @@ public class FIXOrderEvent extends TradeEvent {
             return;
         }
 
-        double fee = basePrice * FEE_RATE;
+        double fee = calculateFee();
 
         System.out.println("FIX Stock Order");
         System.out.println("Order ID: " + clOrdId);

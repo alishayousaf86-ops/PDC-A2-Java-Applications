@@ -14,10 +14,10 @@ public class FIXOrderEvent extends TradeEvent {
             return;
         }
 
-        if (basePrice <= 0) {
-            System.out.println("Invalid order price!");
-            return;
-        }
+       if (!Double.isFinite(basePrice) || basePrice <= 0) {
+    System.out.println("Invalid order price!");
+    return;
+}
 
         double fee = basePrice * 0.0015;
 

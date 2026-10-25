@@ -9,6 +9,11 @@ public class FIXOrderEvent extends TradeEvent {
 
     @Override
     public void dispatch() {
+        if (clOrdId == null || clOrdId.trim().isEmpty()) {
+            System.out.println("Invalid order ID!");
+            return;
+        }
+
         if (basePrice <= 0) {
             System.out.println("Invalid order price!");
             return;
